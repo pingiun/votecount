@@ -1,4 +1,5 @@
 # Python 3.6
+# Usage: python3 votecount.py 3 ballots.csv
 
 import math
 import csv
@@ -10,7 +11,8 @@ from fractions import Fraction
 
 vote_ballots = []
 
-with open(sys.argv[1], 'r') as floor:
+
+with open(sys.argv[2], 'r') as floor:
     votereader = csv.reader(floor, delimiter=',', quotechar='"')
     names = next(votereader)
     for row in votereader:
@@ -156,7 +158,7 @@ class VoteCounter:
                 return elem
         return None
 
-positions = 3
+positions = int(sys.argv[1])
 counter = VoteCounter(vote_ballots, names, positions)
 counter.print_status()
 print("QUOTA:", counter.quota)
